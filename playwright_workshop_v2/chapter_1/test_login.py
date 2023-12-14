@@ -11,6 +11,7 @@ def test_login_successful(page):
 
 
 def test_login_wrong_username(page):
+    # Refactor this test to use the page objects pattern
     page.goto("https://practicetestautomation.com/practice-test-login/")
     page.locator("#username").fill("wrong_username")
     page.locator("#password").fill("Password123")
