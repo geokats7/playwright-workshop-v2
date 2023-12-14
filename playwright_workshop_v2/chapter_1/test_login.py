@@ -1,10 +1,14 @@
+from page_objects.login_page import LoginPage
 
 def test_login_successful(page):
     page.goto("https://practicetestautomation.com/practice-test-login/")
-    page.locator("#username").fill("student")
-    page.locator("#password").fill("Password123")
-    page.locator("#submit").click()
-    assert page.locator("text=Logged In Successfully").is_visible()
+    login_page = LoginPage(page)
+    login_page.fill_username("student")
+    login_page.fill_password("Password123")
+    login_page.click_submit()
+    assert login_page.element_is_visible(login_page.SUCCESSFUL_LOGIN_TEXT)
+
+
 
 def test_login_wrong_username(page):
     page.goto("https://practicetestautomation.com/practice-test-login/")
