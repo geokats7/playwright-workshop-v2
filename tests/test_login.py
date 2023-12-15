@@ -1,10 +1,12 @@
 from page_objects.login_page import LoginPage
+import os
+
 
 def test_login_successful(page):
     page.goto("https://practicetestautomation.com/practice-test-login/")
     login_page = LoginPage(page)
-    login_page.fill_username("student")
-    login_page.fill_password("Password123")
+    login_page.fill_username(os.getenv("LOGIN_USERNAME"))
+    login_page.fill_password(os.getenv("LOGIN_PASSWORD"))
     login_page.click_submit()
     assert login_page.element_is_visible(login_page.SUCCESSFUL_LOGIN_TEXT)
 
